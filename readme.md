@@ -1,9 +1,9 @@
 # News Article Classification — ML Pipeline
 
 ## Project Overview:
-  This project implements an end-to-end machine learning pipeline for news article category classification using Python scripts only. 
-  The system preprocesses text data, converts it into TF-IDF features, trains a Linear SVM classifier, and evaluates performance using accuracy and confusion matrix metrics. 
-  The full workflow runs from the terminal through a single entry script.
+ This project implements a script-based machine learning pipeline to classify news articles into major categories using NLP techniques. 
+ The system performs text preprocessing, TF-IDF feature extraction, and Linear SVM training with hyperparameter tuning. 
+ The full workflow runs from the terminal through modular Python scripts.
 
   ## Objective:
   Build a reproducible ML pipeline that classifies news articles into categories such as:
@@ -17,10 +17,11 @@
   ## Dataset Source:
   - Dataset: BBC News style labeled dataset ( from kaggle)
   - File used: BBCNews.csv
-
-Dataset contains:
-descr → news article text
-tags → comma-separated tags (first tag used as primary label)
+  - Format: CSV
+  - Text column: descr
+  - Label column: tags
+  - First tag is extracted as the primary class label
+  - Rare classes are filtered to avoid class sparsity and split errors
 
 During preprocessing:
 first tag is extracted as class label
@@ -28,13 +29,11 @@ rare labels removed
 only core news categories retained
 
 ## Model Choice:
-Model: Linear Support Vector Machine (LinearSVC)
-
-Rationale:
-Performs strongly on sparse TF-IDF text features
-Efficient for high-dimensional NLP data
-Deterministic and stable for small/medium datasets
-Lower overfitting risk vs complex models
+  - Linear Support Vector Machine (Linear SVM)
+  - Suitable for high-dimensional sparse text features
+  - Works effectively with TF-IDF vectors
+  - Uses class balancing
+  - Hyperparameter tuning performed using GridSearch cross-validation
 
 ## Feature Engineering
 TF-IDF vectorization with:
@@ -45,27 +44,6 @@ common term filtering
 sublinear term frequency scaling
 This improves semantic signal and margin separation.
 
-## Preprocessing Steps
-Missing value removal
-Index column drop
-Label normalization
-Multi-tag → primary tag extraction
-Rare class filtering
-Core category filtering
-Lowercasing
-Symbol removal
-Stopword removal
-Short token filtering
-
-## Class Imbalance Handling
-Minimum class size threshold applied
-Stratified train/test split
-SVM uses class_weight="balanced"
-
-  ## Hyperparameter Tuning
-  GridSearchCV used for SVM tuning:
-  Best parameter selected automatically.
-  
   ## Evaluation Metrics
   Accuracy
   recall
@@ -76,19 +54,24 @@ SVM uses class_weight="balanced"
   Confusion matrix plot generated
     
   ## Final Result
-        Classification Report:
-                   precision    recall  f1-score   support
-    
-         business       0.91      0.93      0.92        80
-    entertainment       0.99      0.94      0.96        83
-         politics       0.92      0.95      0.93        59
-           sports       0.99      0.98      0.98        95
-       technology       0.97      1.00      0.99        78
+  - Text cleaned and normalized
+  - TF-IDF n-gram features generated
+  - Linear SVM trained with tuned C parameter
+  - Metrics saved in results/metrics.txt for review
 
-       
-         accuracy                           0.96       395
-        macro avg       0.96      0.96      0.96       395
-     weighted avg       0.96      0.96      0.96       395
+         Classification Report:
+                       precision    recall  f1-score   support
+        
+             business       0.91      0.93      0.92        80
+        entertainment       0.99      0.94      0.96        83
+             politics       0.92      0.95      0.93        59
+               sports       0.99      0.98      0.98        95
+           technology       0.97      1.00      0.99        78
+    
+           
+             accuracy                           0.96       395
+            macro avg       0.96      0.96      0.96       395
+         weighted avg       0.96      0.96      0.96       395
 
 
 ## Project Structure
@@ -151,3 +134,4 @@ Controlled class filtering
     
 
      
+
