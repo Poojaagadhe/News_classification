@@ -1,4 +1,18 @@
 Accuracy: 0.959493670886076
+
+Classification Report:
+               precision    recall  f1-score   support
+
+     business       0.91      0.93      0.92        80
+entertainment       0.99      0.94      0.96        83
+     politics       0.92      0.95      0.93        59
+       sports       0.99      0.98      0.98        95
+   technology       0.97      1.00      0.99        78
+
+     accuracy                           0.96       395
+    macro avg       0.96      0.96      0.96       395
+ weighted avg       0.96      0.96      0.96       395
+
 Confusion Matrix:
 [[74  0  4  1  1]
  [ 3 78  1  0  1]
