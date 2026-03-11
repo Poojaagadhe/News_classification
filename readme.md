@@ -127,6 +127,9 @@ Controlled class filtering
  - Label derived from first tag only
  - No semantic embeddings (by assignment constraint)
 
+## Deployment
+ - app link == https://newsclassification-wwk2crjntc8q7vnrr7crkb.streamlit.app/
+
 
 
 
@@ -134,4 +137,5 @@ Controlled class filtering
     
 
      
+
 
